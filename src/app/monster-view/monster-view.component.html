@@ -1,0 +1,11 @@
+<h2>Dragon Warrior Randomizer Monsters</h2>
+<div>
+
+<ul class="monsters">
+    <li *ngFor="let monster of monsters">
+        <a routerLink="/monster/{{monster.id}}">
+            <span class="badge">{{monster.id}}</span>{{monster.name}}
+            
+        </a>
+    </li>
+</ul>

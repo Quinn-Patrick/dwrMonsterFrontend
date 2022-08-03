@@ -1,0 +1,51 @@
+<div *ngIf="monster">
+    <h2>{{monster.id}}: {{monster.name | uppercase}}</h2>
+    <div>
+        <table>
+            <tr>
+                <th>HP Range: {{monster.lowerHp}} - {{monster.upperHp}}</th>
+                <th>50% Run Chance: {{monster.fiftyPercentRunAgility}}</th>
+            </tr>
+            <tr>
+                <th>Strength: {{monster.strength}}</th>
+                <th>75% Run Chance: {{monster.seventyFivePercentRunAgility}}</th>
+            </tr>
+            <tr>
+                <th>Agility: {{monster.agility}}</th>
+                <th>SIR: {{monster.sleepInsteadOfRunAgility}}</th>
+            </tr>
+            <tr>
+                <th>XP: {{monster.xp}}</th>
+                <th>3-Shot: {{monster.threeShotLower}} - {{monster.threeShotUpper}}</th>
+            </tr>
+            <tr>
+                <th>Gold: {{monster.gold}}</th>
+                <th>2-Shot: {{monster.twoShotLower}} - {{monster.twoShotUpper}}</th>
+            </tr>
+            <tr>
+                <th>Hurt Resist: {{monster.hurtResistance * 64}} / 64</th>
+                <th>1-Shot: {{monster.oneShotLower}} - {{monster.oneShotUpper}}</th>
+            </tr>
+            <tr>
+                <th>Sleep Resist: {{monster.sleepResistance * 64}} / 64</th>
+                <th>25% Back Attack: {{monster.twentyFivePercentAmbushAgility}}</th>
+            </tr>
+            <tr>
+                <th>Evasion: {{monster.evasion * 64}} / 64</th>
+                <th>Stopspell Cap: {{64 * monster.stopspellCap}} / 64</th>
+            </tr>
+            <tr>
+                <th>25% Run Strength: {{monster.strength * 2}}</th>
+                <th>HP/XP Ratio: {{(((monster.upperHp - monster.lowerHp) / 2) + monster.lowerHp)/monster.xp | number: '1.0-2'}}</th>
+            </tr>
+            <tr>
+                <th>Hurt Shot: {{monster.hurtShot * 100 | number: '1.0-2'}}%</th>
+                <th>Hurtmore Shot: {{monster.hurtmoreShot * 100 | number: '1.0-2'}}%</th>
+            </tr>
+            <tr>
+                <th>Hurt Breakeven Attack: {{monster.hurtBreakevenAttack}}</th>
+                <th>Broken Cap: {{monster.brokenCap}}</th>
+            </tr>
+        </table>
+    </div>
+</div>
