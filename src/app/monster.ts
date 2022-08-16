@@ -29,5 +29,6 @@ export interface Monster{
     stopspellCap: number;
     hurtmoreShot: number;
     brokenCap: number;
+    hpXpRatio: number;
 
 }

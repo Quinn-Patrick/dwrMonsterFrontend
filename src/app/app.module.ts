@@ -7,12 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MonsterViewComponent } from './monster-view/monster-view.component';
 import { MonsterDetailsComponent } from './monster-details/monster-details.component';
+import { QuestionComponent } from './question/question.component';
+import { MonsterService } from './monster.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     MonsterViewComponent,
-    MonsterDetailsComponent
+    MonsterDetailsComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,9 @@ import { MonsterDetailsComponent } from './monster-details/monster-details.compo
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    MonsterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

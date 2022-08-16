@@ -5,6 +5,8 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HurtmoreShotService } from './hurtmore-shot.service';
 import { AttackRangeService } from './attack-range.service';
+import { HurtBreakevenAttackService } from './hurt-breakeven-attack.service';
+import { HpXpRatioService } from './hp-xp-ratio.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,11 @@ export class MonsterService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient, private hurtmoreShot: HurtmoreShotService, private attackRanges: AttackRangeService) { }
+  constructor(
+    private http: HttpClient, private hurtmoreShot: HurtmoreShotService, 
+    private attackRanges: AttackRangeService,
+    private hurtBreakeven: HurtBreakevenAttackService,
+    private hpXpRatio: HpXpRatioService) { }
 
   getMonsters(): Observable<Monster[]>{
     return this.http.get<Monster[]>(this.monsterUrl + '/monsters').pipe(
@@ -25,6 +31,7 @@ export class MonsterService {
   }
 
   getMonster(id: number): Observable<Monster>{
+    
     const url = `${this.monsterUrl}/monster/${id}`;
     return this.http.get<Monster>(url).pipe(
       tap(_ => this.log(`fetched monster with id ${id}`)),
@@ -33,13 +40,18 @@ export class MonsterService {
   }
 
   //Returns a random monster, but cannot return the dragonlord in either form.
-  getRandomMonster(): Observable<Monster>{
-    return this.getMonster(Math.floor(Math.random() * 38) + 1);
+  getMonsterRandom(): Observable<Monster>{
+    let randomMonsterId: number = Math.floor(Math.random() * 38) + 1;
+    return this.getMonster(randomMonsterId);
   }
+
+  
 
   setDerivedValues(monster: Monster): void{
     monster.hurtShot = this.hurtmoreShot.computeHurt(monster);
     monster.hurtmoreShot = this.hurtmoreShot.computeHurtmore(monster);
+    monster.hurtBreakevenAttack = this.hurtBreakeven.computeHurtBreakevenAttack(monster);
+    monster.hpXpRatio = this.hpXpRatio.computeHpXpRatio(monster);
     monster.threeShotLower = this.attackRanges.computeLowerAttack(3, monster);
     monster.threeShotUpper = this.attackRanges.computeUpperAttack(3, monster);
 
