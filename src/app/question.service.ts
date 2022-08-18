@@ -25,12 +25,21 @@ export class QuestionService {
   generateQuestion(): Observable<Question>{
     let question: Question;
     let monster: Monster;
-    let questionForm = this.possibleQuestions[Math.floor(Math.random() * this.possibleQuestions.length)];
+    let questionForm: number = Math.floor(Math.random() * 5);
 
     return new Observable((observer) => {
-      this.generalQuestionService.generateQuestion(questionForm.text, questionForm.index).subscribe((question) =>{
+      this.monsterService.getMonsterRandom().subscribe((monster) => {
+        console.log(`Attempting to create question form ${questionForm} with monster ${monster.name}`);
+        switch(questionForm){
+          case 0: question = this.generalQuestionService.generateQuestion("What is the strength of a $$", monster, () => {return monster.strength}); break;
+          case 1: question = this.generalQuestionService.generateQuestion("What is the agility of a $$", monster, () => {return monster.agility}); break;
+          case 2: question = this.generalQuestionService.generateQuestion("What is the experience yield of a $$", monster, () => {return monster.xp}); break;
+          case 3: question = this.generalQuestionService.generateQuestion("What is the gold yield of a $$", monster, () => {return monster.gold}); break;
+          case 4: question = this.generalQuestionService.generateQuestion("What is the chance that a $$ resists Hurt or Hurtmore, out of 64", monster, () => {return monster.hurtResistance * 64}); break;
+          default: question = this.generalQuestionService.generateQuestion("What is the strength of a $$", monster, () => {return monster.strength}); break;
+        }
         observer.next(question);
-      })
+      });
     })
 
     /*&return new Observable((observer) =>{

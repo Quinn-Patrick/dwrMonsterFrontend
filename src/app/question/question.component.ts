@@ -15,6 +15,7 @@ export class QuestionComponent implements OnInit {
   totalAnswered: number = 0;
 
   answerQuestion(answer: string){
+    if(this.answered) return;
     this.answered = true;
     this.totalAnswered++;
     if(answer === "" + this.question?.correctAnswer){

@@ -9,26 +9,12 @@ import { Question } from './question';
 })
 export class SingleAnswerQuestionService {
   
-  generateQuestion(primaryText: string, correctAnswerIndex: number): Observable<Question>{
-    return new Observable<Question>((observer) => {
+  generateQuestion(primaryText: string, monster: Monster, correctAnswer: Function): Question{
       let question: Question = {text: "", answers: [], correctAnswer: 0};
-      this.monsterService.getMonsterRandom().subscribe((monster) => {
-        question.text = primaryText.replace("$$", monster.name);
-        question.correctAnswer = this.correctAnswer(correctAnswerIndex, monster);
-        this.populateAnswers(question);
-        observer.next(question);
-      });
-    });
-  }
-
-  correctAnswer(index: number, monster: Monster): number{
-    switch(index){
-      case 0: return monster.strength;
-      case 1: return monster.agility;
-      case 2: return monster.xp;
-      case 3: return monster.gold;
-      default: return monster.strength;
-    }
+      question.text = primaryText.replace("$$", monster.name);
+      question.correctAnswer = correctAnswer();
+      this.populateAnswers(question);
+      return question;
   }
 
   populateAnswers(question: Question): void{
@@ -46,10 +32,16 @@ export class SingleAnswerQuestionService {
   }
 
   generateGeneralIncorrectAnswer(correctAnswer: number): number{
+    if(correctAnswer < 2){
+      return Math.floor(Math.random() * 9);
+    }
+
     //It is possible for an incorrect answer to range from half of the correct answer to double it,
     //although these maximum and minimum values can vary.
-    let max: number = Math.floor(correctAnswer * (Math.random() + 1.0));
-    let min: number = Math.floor(correctAnswer * ((Math.random() * 0.5) + 0.5));
+    let minPercent = (Math.random() * 0.5) + 0.5;
+    let min: number = Math.floor(correctAnswer * (minPercent));
+    let max: number = Math.floor(correctAnswer * (minPercent + 1.0));
+    
     let result = Math.floor(Math.random() * (max - min) ) + min;
     return result < 1 ? 1 : result;
   }
