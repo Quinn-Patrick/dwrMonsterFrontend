@@ -1,0 +1,27 @@
+.answers{
+    text-align: left;
+}
+.prompt{
+    
+    font-size: 24pt;
+}
+.answer{
+    padding: 10px;
+    font-size: 16pt;
+}
+.answer input{
+    width: 1000pt;
+    display: inline-block;
+}
+.question{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    align-self: center;
+    width: max-content;
+    padding: 10px;
+    border-radius: 5;
+    border-color: white;
+    border-style: inset;
+    text-align: center;
+    background-color: black;
+    color: white;
+}

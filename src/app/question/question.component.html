@@ -1,8 +1,12 @@
-<div *ngIf="question">
-    {{question.text}}?
-    <div *ngFor="let answer of question.answers">
-        <input  type="radio" id={{answer}} name="answers" value={{answer}} (click)="answerQuestion(answer)">
-        <label for={{answer}}>{{answer}}</label>
+<div *ngIf="question" class="question">
+    <span class="prompt">
+        {{question.text}}?
+    </span>
+    <div class="answers">
+        <div *ngFor="let answer of question.answers" class="answer">
+            <button id={{answer}} class="answer" name="answer" value={{answer}} (click)="answerQuestion(answer)">{{answer}}</button>
+            <!--<label for={{answer}}>{{answer}}</label>-->
+        </div>
     </div>
     <div *ngIf="answered">
         <div *ngIf="correct">Thou hast done well in answering the question!</div>
