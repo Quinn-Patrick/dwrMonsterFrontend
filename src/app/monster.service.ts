@@ -7,12 +7,13 @@ import { HurtmoreShotService } from './hurtmore-shot.service';
 import { AttackRangeService } from './attack-range.service';
 import { HurtBreakevenAttackService } from './hurt-breakeven-attack.service';
 import { HpXpRatioService } from './hp-xp-ratio.service';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MonsterService {
-  private monsterUrl = "http://localhost:8080/api";
+  private monsterUrl = `${environment.api}/api`;
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
