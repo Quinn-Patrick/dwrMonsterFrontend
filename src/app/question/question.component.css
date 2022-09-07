@@ -1,6 +1,4 @@
-.answers{
-    text-align: left;
-}
+
 .prompt{
     
     font-size: 24pt;
@@ -9,14 +7,20 @@
     padding: 10px;
     font-size: 16pt;
 }
-.answer input{
+
+.answer input>div{
     width: 1000pt;
     display: inline-block;
-}
-.question{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     align-self: center;
-    width: max-content;
+}
+.flex-container{
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    justify-content: center;
+    flex-direction: column;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     padding: 10px;
     border-radius: 5;
     border-color: white;
@@ -24,4 +28,7 @@
     text-align: center;
     background-color: black;
     color: white;
+}
+.quiz{
+    
 }
