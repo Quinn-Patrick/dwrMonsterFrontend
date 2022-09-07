@@ -2,6 +2,7 @@
 h1 {
   margin-bottom: 0;
   font-family:'Courier New', Courier, monospace;
+  text-align: center;
 }
 nav a {
   padding: 1rem;
@@ -18,4 +19,9 @@ nav a:hover {
 }
 nav a.active {
   background-color: black;
+}
+h1{
+  background-color: black;
+  color: white;
+  font-family: 'rubik';
 }

@@ -1,5 +1,5 @@
 <div class="flex-container">
-    <div *ngIf="question">
+    <div *ngIf="question" class="quiz">
         <span class="prompt">
             {{question.text}}?
         </span>
@@ -10,8 +10,8 @@
             </div>
         </div>
         <div *ngIf="answered">
-            <div *ngIf="correct">Thou hast done well in answering the question!</div>
-            <div *ngIf="!correct">An incorrect answer should not have taken thee! The correct answer is {{question.correctAnswer}}.</div>
+            <div *ngIf="correct"><p>Thou hast done well in answering the question!</p></div>
+            <div *ngIf="!correct"><p>An incorrect answer should not have taken thee! The correct answer is {{question.correctAnswer}}.</p></div>
             <button id="next" (click)="nextQuestion()">Next Question</button>
         </div>
         <div *ngIf="totalAnswered">{{totalCorrect}} / {{totalAnswered}}</div>
